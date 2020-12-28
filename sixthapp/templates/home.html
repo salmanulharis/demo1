@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <ul>
+        {% for product in products %}
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 class="card-title">{{ product.price }}</h6>
+            <p class="card-text">{{ product.description }}</p>
+          </div>
+        </div>
+
+        <!-- <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{ product.name }}</div>
+            <div class="card-body text-primary">
+              <h5 class="card-title">{{ product.price }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+            </div>
+          </div> -->
+        {% endfor %}
+    </ul>
+{% endblock %}
