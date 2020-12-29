@@ -128,3 +128,13 @@ def add_category(request):
     else:
         form = CategoryForm()
         return render(request, 'add_category.html', {'form':form})
+
+def delete_product(request, id):
+    product = Products.objects.get(id=id)
+    product.delete()
+    return redirect('home')
+
+def del_category(request, id):
+    category = Category.objects.get(id=id)
+    category.delete()
+    return redirect('home')
