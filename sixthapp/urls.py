@@ -12,8 +12,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_page),
     path('logout/', logout_fn),
-    path('edit/user/', edit_user),
-    path('password/', change_password),
+    path('edit/user/', edit_user, name='edit_user'),
+    path('password/', change_password, name='change_password'),
     path('add_category/', add_category, name='add_category'),
     path('category/delete/<int:id>', del_category, name='del_category')
 
