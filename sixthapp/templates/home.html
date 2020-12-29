@@ -2,8 +2,9 @@
 {% load static %}
 {% block head %}
     <ul>
+      <div class="d-flex">
         {% for product in products %}
-        <div class="card" style="width: 18rem;">
+        <div class="card m-3" style="width: 18rem;">
           <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
@@ -22,5 +23,6 @@
             </div>
           </div> -->
         {% endfor %}
+      </div>
     </ul>
 {% endblock %}
