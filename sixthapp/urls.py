@@ -1,7 +1,8 @@
 from django.urls import path
 from sixthapp.views import home, add_product, \
     edit_product, show_products, register, login_page, logout_fn, \
-        edit_user, change_password, add_category, delete_product, del_category
+        edit_user, change_password, add_category, delete_product, \
+            del_category
 
 urlpatterns = [
     path('', home, name='home'),
@@ -15,7 +16,7 @@ urlpatterns = [
     path('edit/user/', edit_user, name='edit_user'),
     path('password/', change_password, name='change_password'),
     path('add_category/', add_category, name='add_category'),
-    path('category/delete/<int:id>', del_category, name='del_category')
+    path('category/delete/<int:id>', del_category, name='del_category'),
 
 
 ]

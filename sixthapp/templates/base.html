@@ -31,7 +31,10 @@
               <a class="nav-link" href="{% url 'add_product' %}">Add Product</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'edit_user' %}">Edit User</a>
+              <a class="nav-link" href="{% url 'edit_user' %}">{{ request.user.first_name }}
+                <img src="{{ request.user.profilepicture.image.url }}" width="30" height="30" alt="">
+              </a>
+
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout/">Logout</a>

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head %}
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{ profile_pic.image.url }}" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text"></p>
+    </div>
+</div>
+{% endblock %}

@@ -23,3 +23,9 @@ class Products(models.Model):
         ordering = ['name']
     def __str__(self):
         return self.name
+
+class ProfilePicture(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='profile_pic')
+    def __str__(self):
+        return self.user.username

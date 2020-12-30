@@ -2,7 +2,7 @@
 {% load static %}
 {% block head %}
     <ul>
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         {% for product in products %}
         <div class="card m-3" style="width: 18rem;">
           <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
@@ -14,14 +14,6 @@
             <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">delete</a>
           </div>
         </div>
-
-        <!-- <div class="card border-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">{{ product.name }}</div>
-            <div class="card-body text-primary">
-              <h5 class="card-title">{{ product.price }}</h5>
-              <p class="card-text">{{ product.description }}</p>
-            </div>
-          </div> -->
         {% endfor %}
       </div>
     </ul>

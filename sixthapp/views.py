@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Products, Category
-from .forms import ProductForm, ProductModelForm, RegistrationForm, EditForm, CategoryForm
+from .models import Products, Category, ProfilePicture
+from .forms import ProductForm, ProductModelForm, RegistrationForm, EditForm, CategoryForm, ProfilePicForm
 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
@@ -60,28 +60,41 @@ def edit_product(request, id):
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST, request.FILES)
+        form = RegistrationForm(request.POST)
+        form1 = ProfilePicForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            if form1.is_valid():
+                obj2 = form1.save(commit=False)
+                obj2.user = obj
+                obj2.save()
             return redirect('home')
         else:
-            return render(request, 'register.html', {'form':form})
+            return render(request, 'register.html', {'form':form, 'form1':form1})
     else:
         form = RegistrationForm()
-        return render(request, 'register.html', {'form':form})
+        form1 = ProfilePicForm()
+        return render(request, 'register.html', {'form':form, 'form1':form1})
 
 @login_required(login_url='/login/')
 def edit_user(request):
+    user = ProfilePicture.objects.get(user=request.user)
     if request.method == 'POST':
         form = EditForm(request.POST, instance= request.user)
+        form1 = ProfilePicForm(request.POST, request.FILES, instance= user)
         if form.is_valid():
-            form.save()
+            obj = form.save()
+            if form1.is_valid():
+                obj2 = form1.save(commit=False)
+                obj2.user = obj
+                obj2.save()
             return redirect('home')
         else:
-            return render(request, 'register.html', {'form':form})
+            return render(request, 'register.html', {'form':form, 'form1':form1})
     else:
         form = EditForm(instance= request.user)
-        return render(request, 'register.html', {'form':form})
+        form1 = ProfilePicForm(instance= user)
+        return render(request, 'register.html', {'form':form, 'form1':form1})
 
 @login_required(login_url='/login/')
 def change_password(request):
